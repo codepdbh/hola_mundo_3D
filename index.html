@@ -1,4 +1,16 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Hola Mundo 3D</title>
+<meta name="description" content="El clásico primer programa reinventado en 3D real: texto extruido con neón, un campo de partículas y una terminal animada. Hecho con Three.js y CSS 3D.">
+<meta property="og:title" content="Hola Mundo 3D">
+<meta property="og:description" content="El clásico primer programa reinventado en 3D real, con partículas, neón y una terminal animada.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#05030f">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%8C%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Sora:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap">
 <style>
   :root{
     --void:#05030f;
@@ -14,9 +26,12 @@
     --muted-dim:#6c5f96;
   }
 
-  *{box-sizing:border-box;}
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+
+  html{overflow-x:hidden;}
 
   body{
+    margin:0;
     background:
       radial-gradient(1200px 640px at 14% -6%, rgba(107,33,255,0.38), transparent 60%),
       radial-gradient(1000px 720px at 92% 10%, rgba(255,47,176,0.20), transparent 55%),
@@ -25,6 +40,7 @@
     color:var(--starlight);
     font-family:'Sora', system-ui, sans-serif;
     overflow-x:hidden;
+    width:100%;
   }
 
   h1,h2,h3{text-wrap:balance; margin:0;}
@@ -58,11 +74,13 @@
 
   .hero{
     position:relative;
-    min-height:clamp(640px, 100vh, 960px);
+    min-height:clamp(560px, 100vh, 960px);
+    min-height:clamp(560px, 100svh, 960px);
     display:flex; flex-direction:column; align-items:center; justify-content:center;
     padding:5.5rem 1.5rem 3rem;
     perspective:1500px;
     overflow:hidden;
+    width:100%;
   }
 
   .floor-grid{
@@ -251,9 +269,29 @@
     color:var(--muted-dim); font-size:0.78rem; font-family:'Space Mono', monospace;
   }
   footer .dot{color:var(--gold);}
+  footer a{text-decoration:none; border-bottom:1px dotted var(--muted-dim); transition:color 0.2s ease, border-color 0.2s ease;}
+  footer a:hover{color:var(--cyan); border-color:var(--cyan);}
 
   @media (max-width:720px){
+    .hero{padding:4.4rem 1.25rem 2.4rem;}
     .terminal-card{position:relative; right:auto; bottom:auto; margin-top:2.2rem; width:min(360px,92vw);}
+    .scroll-cue{position:relative; bottom:auto; margin-top:2rem; left:auto; transform:none;}
+    .caption{max-width:90vw;}
+    .langs{padding:3.4rem 1.25rem 4.5rem;}
+    .lang-grid{grid-template-columns:1fr;}
+  }
+
+  @media (max-width:420px){
+    .layer{font-size:clamp(2.5rem, 15vw, 3.6rem);}
+    .eyebrow{font-size:0.62rem; letter-spacing:0.2em;}
+    .caption{font-size:0.86rem;}
+    .terminal-body{font-size:0.74rem;}
+    .floor-grid{background-size:44px 44px;}
+  }
+
+  @media (max-height:640px) and (max-width:720px){
+    .hero{padding-top:3.4rem;}
+    .scroll-cue{display:none;}
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -264,6 +302,8 @@
     .cursor{animation:none;}
   }
 </style>
+</head>
+<body>
 
 <div class="grain"></div>
 <canvas id="bg"></canvas>
@@ -352,12 +392,11 @@
   </section>
 
   <footer>
-    <span>Construido con Three.js &amp; CSS 3D <span class="dot">·</span> para paukarvv</span>
+    <span>Construido con Three.js &amp; CSS 3D <span class="dot">·</span> por <a href="https://github.com/codepdbh" target="_blank" rel="noopener">codepdbh</a></span>
     <span id="footDate"></span>
   </footer>
 </main>
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Sora:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 (function(){
@@ -698,3 +737,5 @@
 
 })();
 </script>
+</body>
+</html>
